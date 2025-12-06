@@ -1,6 +1,6 @@
-# Migration to pnpm
+# pnpm usage in this repo
 
-This project has been migrated from npm to pnpm to improve dependency management and developer experience.
+We use pnpm for the packages listed in `pnpm-workspace.yaml` (currently `docs`, `sdk/typescript`, and `shell-tool-mcp`). The legacy `codex-cli` package is still built with npm and retains its `package-lock.json` for publishing, so don’t delete or regenerate it with pnpm.
 
 ## Why pnpm?
 
@@ -46,9 +46,10 @@ codex/
 ├── pnpm-workspace.yaml    # Workspace configuration
 ├── .npmrc                 # pnpm configuration
 ├── package.json           # Root dependencies and scripts
-├── codex-cli/             # Main package
-│   └── package.json       # codex-cli specific dependencies
-└── docs/                  # Documentation (future package)
+├── docs/                  # pnpm workspace package
+├── sdk/typescript/        # pnpm workspace package
+├── shell-tool-mcp/        # pnpm workspace package
+└── codex-cli/             # npm-managed legacy CLI (keeps package-lock.json)
 ```
 
 ## Configuration files
@@ -68,3 +69,4 @@ If you encounter issues with pnpm, try the following solutions:
 1. Remove the `node_modules` folder and `pnpm-lock.yaml` file, then run `pnpm install`
 2. Make sure you're using pnpm 10.8.1 or higher
 3. Verify that Node.js 22 or higher is installed
+4. For `codex-cli`, continue using npm with the existing `package-lock.json` when you need to build or publish that package.
